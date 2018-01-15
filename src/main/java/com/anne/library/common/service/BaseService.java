@@ -14,11 +14,4 @@ import java.io.Serializable;
  */
 public interface BaseService <T extends EntityBean> extends Mapper<T> {
 
-
-    /**
-     * 公用逻辑删除
-     * @param key 对象中的属性是要删除的条件
-     * @return 删除条数
-     */
-    int deleteByPrimaryKeyLogical(T key);
 }

@@ -2,6 +2,7 @@ package com.anne.library.common.domain;
 
 import javax.persistence.Column;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -24,21 +25,33 @@ public abstract class EntityBean<K extends Serializable> implements Serializable
 
     public abstract void setCreateBy(K createBy);
 
+    @Column(name = "CREATE_DATE")
+    private Timestamp createDate;
+
+    @Column(name = "LAST_MODIFIED_DATE")
+    private Timestamp LastModifiedDate;
+
     @Column(name = "DELETED_FLAG")
     private String deletedFlag;
-
-    @Column(name = "GMT_CREATE")
-    private Date gmtCreate;
-
-    @Column(name = "GMT_MODIFIED")
-    private Date gmtModified;
-
-    @Column(name = "CREATE_BY")
-    private String createBy;
 
     @Column(name = "MODIFICATION_NUM")
     private Integer modificationNum;
 
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
+    public Timestamp getLastModifiedDate() {
+        return LastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Timestamp lastModifiedDate) {
+        LastModifiedDate = lastModifiedDate;
+    }
 
     public String getDeletedFlag() {
         return deletedFlag;
@@ -46,22 +59,6 @@ public abstract class EntityBean<K extends Serializable> implements Serializable
 
     public void setDeletedFlag(String deletedFlag) {
         this.deletedFlag = deletedFlag;
-    }
-
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Date getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
     }
 
     public Integer getModificationNum() {

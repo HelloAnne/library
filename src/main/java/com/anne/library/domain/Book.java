@@ -1,5 +1,8 @@
 package com.anne.library.domain;
 
+import com.anne.library.common.domain.EntityBean;
+
+import javax.persistence.Column;
 import java.io.Serializable;
 
 /**
@@ -7,7 +10,7 @@ import java.io.Serializable;
  * Date: 2018/1/14
  * Description:
  */
-public class Book {
+public class Book extends EntityBean<Long>{
 
     /**
      * 主键
@@ -53,6 +56,18 @@ public class Book {
      * 是否下架（DeletedFlagEnum：未下架0，已下架1）
      */
     private String deletedFlag;
+
+    /**
+     * 记录创建人ID
+     */
+    @Column(name = "CREATE_BY")
+    private Long createBy;
+
+    /**
+     * 记录最近修改人ID
+     */
+    @Column(name = "LAST_MODIFIED_BY")
+    private Long lastModifiedBy;
 
     public Long getId() {
         return id;
@@ -124,5 +139,21 @@ public class Book {
 
     public void setDeletedFlag(String deletedFlag) {
         this.deletedFlag = deletedFlag;
+    }
+
+    public Long getCreateBy() {
+        return createBy;
+    }
+
+    public void setCreateBy(Long createBy) {
+        this.createBy = createBy;
+    }
+
+    public Long getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(Long lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 }

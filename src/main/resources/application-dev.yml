@@ -4,12 +4,12 @@ server:
 #mybaits
 mybatis:
     type-aliases-package: com.anne.library.domain
-    mapperLocation: classpath:com/anne/library/dao/mapper/*.xml
+    config-location: classpath:/mybatis/sqlMapConfig.xml
+    mapper-locations: classpath*:mybatis/mappers/**/*DAO.xml
     configuration:
         map-underscore-to-camel-case: true
         default-fetch-size: 100
         default-statement-timeout: 3000
-
 
 spring:
   # druid

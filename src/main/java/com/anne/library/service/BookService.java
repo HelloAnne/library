@@ -1,5 +1,6 @@
 package com.anne.library.service;
 
+import com.anne.library.common.service.BaseService;
 import com.anne.library.domain.Book;
 import com.anne.library.utils.Result;
 
@@ -10,7 +11,7 @@ import java.util.List;
  * Date: 2018/1/14
  * Description:
  */
-public interface BookService {
+public interface BookService extends BaseService<Book> {
 
     int logicalDeleteBookPrimaryKey(Long bookId);
 

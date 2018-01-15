@@ -1,5 +1,6 @@
 package com.anne.library.service.impl;
 
+import com.anne.library.common.service.BaseServiceImpl;
 import com.anne.library.domain.Book;
 import com.anne.library.domain.BorrowRecord;
 import com.anne.library.enums.DeletedFlagEnum;
@@ -21,7 +22,7 @@ import java.util.List;
  * Description:
  */
 @Service
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl extends BaseServiceImpl<Book> implements BookService{
 
     @Autowired
     private RedisService redisService;
@@ -90,6 +91,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> selectAllBooks(){
+        // TODO
         return null;
     }
 }

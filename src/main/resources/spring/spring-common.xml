@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--使用oracle数据库一定要有下边的配置，否则插入语句自动生成sequence会有问题-->
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.**.dao"/>
+        <property name="markerInterface" value="tk.mybatis.mapper.common.Mapper"/>
+        <property name="properties">
+            <value>
+                mappers=com.anne.library.common.dao.CommonMapper
+            </value>
+        </property>
+    </bean>
+</beans>

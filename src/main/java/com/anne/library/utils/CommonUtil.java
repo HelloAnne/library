@@ -1,6 +1,11 @@
 package com.anne.library.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.anne.library.exception.GlobelExceptionHandler;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Date;
 
 /**
  * Author: Anne Zhang
@@ -37,7 +42,29 @@ public class CommonUtil {
             return (String)value;
         }
         return JSON.toJSONString(value);
-
-
     }
+
+    public static<T> T initBean(T t) throws InvocationTargetException, IllegalAccessException {
+        Method[] mds = t.getClass().getMethods();
+        for (Method m : mds) {
+            String mName = m.getName();
+            if ("setDeletedFlag".equalsIgnoreCase(mName)) {
+                m.invoke(t, "0");
+            }else if("setModificationNum".equalsIgnoreCase(mName)) {
+                m.invoke(t, 0);
+            }else if("setOriginApp".equalsIgnoreCase(mName)) {
+                m.invoke(t, "-1");
+            }else if("setOriginFlag".equalsIgnoreCase(mName)) {
+                m.invoke(t, "I");
+            }else if("setGmtModified,setGmtCreate".indexOf(mName) > -1) {
+                m.invoke(t, new Date());
+            }else if("setCreateBy".equalsIgnoreCase(mName)){
+                m.invoke(t, Long.parseLong("-1"));
+            }else if("setLastModifiedBy".equalsIgnoreCase(mName)){
+                m.invoke(t, Long.parseLong("-1"));
+            }
+        }
+        return t;
+    }
+
 }

@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
 @ResponseBody
-public class GlobelExceptionhandler {
+public class GlobelExceptionHandler {
 }

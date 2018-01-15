@@ -1,11 +1,12 @@
 package com.anne.library.controller;
 
+import com.anne.library.common.controller.BaseController;
+import com.anne.library.dao.BookDAO;
 import com.anne.library.domain.Book;
-import com.anne.library.domain.BorrowRecord;
 import com.anne.library.enums.DeletedFlagEnum;
 import com.anne.library.redis.BookKey;
 import com.anne.library.redis.RedisService;
-import com.anne.library.service.impl.BookServiceImpl;
+import com.anne.library.service.BookService;
 import com.anne.library.utils.Result;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
 import java.util.List;
 
 /**
@@ -25,10 +24,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/book")
-public class BookController implements InitializingBean {
+public class BookController extends BaseController<Book,BookDAO,BookService> implements InitializingBean {
 
     @Autowired
-    private BookServiceImpl bookService;
+    private BookService bookService;
 
     @Autowired
     private RedisService redisService;
@@ -40,8 +39,11 @@ public class BookController implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         List<Book> books = bookService.selectAllBooks();
-        books.stream().forEach(book->{
+        if (books == null){
+            return;
+        }
 
+        books.stream().forEach(book->{
             // 将book的下架标示读取到缓存中。
             redisService.set(BookKey.deletedFlag, ""+book.getId(), book.getDeletedFlag());
 
