@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
  * Description:
  */
 
-//@Configuration
+@Configuration
 public class MQConfig {
 
 public static final String BORROW_QUEUE = "borrow.queue";
 
 
-//    @Bean
-//    public Queue queue(){
-//        return  new Queue(BORROW_QUEUE, true);
-//    }
+    @Bean
+    public Queue queue(){
+        return  new Queue(BORROW_QUEUE, true);
+    }
 }
