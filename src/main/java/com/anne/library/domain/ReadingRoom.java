@@ -1,30 +1,52 @@
 package com.anne.library.domain;
 
+import com.anne.library.common.domain.EntityBean;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 /**
  * Author: Anne Zhang
  * Date: 2018/1/14
  * Description:
  */
-public class ReadingRoom {
+public class ReadingRoom extends EntityBean<Long> {
     /**
      * 主键
      */
+    @Id
+    @Column(name = "ID")
     private Long id;
 
     /**
      * 阅览室名
      */
+    @Column(name = "READING_ROOM_NAME")
     private String readingRoomName;
 
     /**
      * 阅览室位置
      */
+    @Column(name = "LOCATION")
     private String location;
 
     /**
      * 状态（StatusEnum：停用0，激活1）
      */
+    @Column(name = "STATUS")
     private String status;
+
+    /**
+     * 记录创建人ID
+     */
+    @Column(name = "CREATE_BY")
+    private Long createBy;
+
+    /**
+     * 记录最近修改人ID
+     */
+    @Column(name = "LAST_MODIFIED_BY")
+    private Long lastModifiedBy;
 
     public Long getId() {
         return id;
@@ -56,5 +78,25 @@ public class ReadingRoom {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public Long getCreateBy() {
+        return createBy;
+    }
+
+    @Override
+    public void setCreateBy(Long createBy) {
+        this.createBy = createBy;
+    }
+
+    @Override
+    public Long getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    @Override
+    public void setLastModifiedBy(Long lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 }

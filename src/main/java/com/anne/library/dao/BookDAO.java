@@ -8,5 +8,5 @@ import com.anne.library.domain.Book;
  * Date: 2018/1/14
  * Description:
  */
-public interface BookDAO extends CommonMapper<Book> {
+public interface BookDAO extends CommonMapper<Book>{
 }

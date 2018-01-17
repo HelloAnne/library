@@ -3,6 +3,7 @@ package com.anne.library.domain;
 import com.anne.library.common.domain.EntityBean;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -15,47 +16,51 @@ public class Book extends EntityBean<Long>{
     /**
      * 主键
      */
+    @Id
+    @Column(name = "ID")
     private Long id;
 
     /**
      * 书架id
      */
+    @Column(name = "BOOK_SHELF_ID")
     private Long bookshelfId;
 
     /**
      * 书名
      */
+    @Column(name = "BOOK_NAME")
     private String bookName;
 
     /**
      * 作者名
      */
+    @Column(name = "AUTHOR_NAME")
     private String authorName;
 
     /**
      * 封面路径
      */
+    @Column(name = "BOOK_COVER_IMG")
     private String bookCoverImg;
 
     /**
      * 简介
      */
+    @Column(name = "BOOK_INTRODUCTION")
     private String bookIntroduction;
 
     /**
      * 价格
      */
+    @Column(name = "BOOK_PRICE")
     private Double bookPrice;
 
     /**
      * 库存
      */
+    @Column(name = "BOOK_STOCK")
     private Integer bookStock;
-
-    /**
-     * 是否下架（DeletedFlagEnum：未下架0，已下架1）
-     */
-    private String deletedFlag;
 
     /**
      * 记录创建人ID
@@ -133,26 +138,22 @@ public class Book extends EntityBean<Long>{
         this.bookStock = bookStock;
     }
 
-    public String getDeletedFlag() {
-        return deletedFlag;
-    }
-
-    public void setDeletedFlag(String deletedFlag) {
-        this.deletedFlag = deletedFlag;
-    }
-
+    @Override
     public Long getCreateBy() {
         return createBy;
     }
 
+    @Override
     public void setCreateBy(Long createBy) {
         this.createBy = createBy;
     }
 
+    @Override
     public Long getLastModifiedBy() {
         return lastModifiedBy;
     }
 
+    @Override
     public void setLastModifiedBy(Long lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }

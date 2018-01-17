@@ -2,9 +2,12 @@ package com.anne.library.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.anne.library.exception.GlobelExceptionHandler;
+import org.springframework.beans.BeanUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Date;
 
 /**
@@ -66,5 +69,6 @@ public class CommonUtil {
         }
         return t;
     }
+
 
 }

@@ -1,5 +1,7 @@
 package com.anne.library.service.impl;
 
+import com.anne.library.common.service.BaseServiceImpl;
+import com.anne.library.domain.BookShelf;
 import com.anne.library.service.BookShelfService;
 import org.springframework.stereotype.Service;
 
@@ -9,5 +11,5 @@ import org.springframework.stereotype.Service;
  * Description:
  */
 @Service
-public class BookShelfServiceImpl implements BookShelfService {
+public class BookShelfServiceImpl extends BaseServiceImpl<BookShelf> implements BookShelfService {
 }

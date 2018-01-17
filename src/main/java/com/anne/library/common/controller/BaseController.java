@@ -28,7 +28,7 @@ public abstract class BaseController <T extends EntityBean<Long>,DTO,SERVICE ext
     @Autowired
     protected SERVICE service;
 
-    protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     @RequestMapping(value="/{id}/view",method= RequestMethod.GET)
     public @ResponseBody Result<DTO> getOne(@PathVariable("id") String id){
@@ -43,7 +43,7 @@ public abstract class BaseController <T extends EntityBean<Long>,DTO,SERVICE ext
         return Result.ok(dto);
     }
 
-    @RequestMapping(value="/byParam/query",method=RequestMethod.POST)
+    @RequestMapping(value="/byParam/queryList",method=RequestMethod.POST)
     public @ResponseBody Result<List<DTO>> queryByParam(@RequestBody DTO dto) {
         Result<List<DTO>> result = new Result<>();
         T entityBean = getEntityBeanAndCopyProperties(dto);
@@ -86,13 +86,34 @@ public abstract class BaseController <T extends EntityBean<Long>,DTO,SERVICE ext
                 // TODO exception
                 throw new RuntimeException(ReturnUtil.RETURN_MSG_ERROR_CREATE_BEAN, e);
             }
-            this.service.insert(entityBean);
+            service.insertSelective(entityBean);
         }else{
             // 只更新not null的字段
-            this.service.updateByPrimaryKeySelective(entityBean);
+            service.updateByPrimaryKeySelective(entityBean);
         }
         result.setDatas(entityBean);
         return result;
+    }
+
+    @RequestMapping(value="/{id}/logicalDelete",method=RequestMethod.PUT)
+    public @ResponseBody Result logicalDelete(@PathVariable("id") String id){
+        T entityBean = getEntityBean();
+        entityBean.setId(new Long(id));
+        entityBean = service.selectByPrimaryKey(entityBean);
+        if(null == entityBean){
+            return Result.fail(ReturnUtil.RETURN_CODE_OBJECT_NOT_EXIST,ReturnUtil.RETURN_MSG_OBJECT_NOT_EXIST);
+        }
+        entityBean.setDeletedFlag(DeletedFlagEnum.DELETED.getValue());
+        service.updateByPrimaryKeySelective(entityBean);
+        return Result.ok();
+    }
+
+    @RequestMapping(value="/{id}/delete",method=RequestMethod.DELETE)
+    public @ResponseBody Result delete(@PathVariable("id") String id){
+        T entityBean = getEntityBean();
+        entityBean.setId(new Long(id));
+        service.deleteByPrimaryKey(entityBean);
+        return Result.ok();
     }
 
     private T getEntityBeanAndCopyProperties(DTO dto){
@@ -130,5 +151,6 @@ public abstract class BaseController <T extends EntityBean<Long>,DTO,SERVICE ext
         }
         return dtoBean;
     }
+
 }
 
