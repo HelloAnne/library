@@ -4,6 +4,7 @@ import com.anne.library.common.domain.EntityBean;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * Date: 2018/1/14
  * Description:
  */
+@Table(name = "book")
 public class Book extends EntityBean<Long>{
 
     /**

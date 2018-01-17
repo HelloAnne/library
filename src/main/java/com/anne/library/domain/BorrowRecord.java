@@ -4,6 +4,7 @@ import com.anne.library.common.domain.EntityBean;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 
 /**
@@ -11,6 +12,7 @@ import java.sql.Timestamp;
  * Date: 2018/1/14
  * Description:
  */
+@Table(name = "book_record")
 public class BorrowRecord  extends EntityBean<Long> {
 
     /**

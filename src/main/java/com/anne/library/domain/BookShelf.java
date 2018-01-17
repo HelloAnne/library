@@ -4,12 +4,14 @@ import com.anne.library.common.domain.EntityBean;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Author: Anne Zhang
  * Date: 2018/1/14
  * Description:
  */
+@Table(name = "book_shelf")
 public class BookShelf extends EntityBean<Long>{
 
     /**
