@@ -3,6 +3,7 @@ package com.anne.library.domain;
 import com.anne.library.common.domain.EntityBean;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +20,7 @@ public class BookShelf extends EntityBean<Long>{
      */
     @Id
     @Column(name = "ID")
+    @GeneratedValue(generator = "JDBC")
     private Long id;
 
     /**

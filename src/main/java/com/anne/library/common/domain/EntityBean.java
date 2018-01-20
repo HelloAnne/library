@@ -3,7 +3,6 @@ package com.anne.library.common.domain;
 import javax.persistence.Column;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Author: Anne Zhang

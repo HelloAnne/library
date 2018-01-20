@@ -3,6 +3,7 @@ package com.anne.library.domain;
 import com.anne.library.common.domain.EntityBean;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class Book extends EntityBean<Long>{
      */
     @Id
     @Column(name = "ID")
+    @GeneratedValue(generator = "JDBC")
     private Long id;
 
     /**
@@ -158,5 +160,40 @@ public class Book extends EntityBean<Long>{
     @Override
     public void setLastModifiedBy(Long lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (id != null ? !id.equals(book.id) : book.id != null) return false;
+        if (bookshelfId != null ? !bookshelfId.equals(book.bookshelfId) : book.bookshelfId != null) return false;
+        if (bookName != null ? !bookName.equals(book.bookName) : book.bookName != null) return false;
+        if (authorName != null ? !authorName.equals(book.authorName) : book.authorName != null) return false;
+        if (bookCoverImg != null ? !bookCoverImg.equals(book.bookCoverImg) : book.bookCoverImg != null) return false;
+        if (bookIntroduction != null ? !bookIntroduction.equals(book.bookIntroduction) : book.bookIntroduction != null)
+            return false;
+        if (bookPrice != null ? !bookPrice.equals(book.bookPrice) : book.bookPrice != null) return false;
+        if (bookStock != null ? !bookStock.equals(book.bookStock) : book.bookStock != null) return false;
+        if (createBy != null ? !createBy.equals(book.createBy) : book.createBy != null) return false;
+        return lastModifiedBy != null ? lastModifiedBy.equals(book.lastModifiedBy) : book.lastModifiedBy == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (bookshelfId != null ? bookshelfId.hashCode() : 0);
+        result = 31 * result + (bookName != null ? bookName.hashCode() : 0);
+        result = 31 * result + (authorName != null ? authorName.hashCode() : 0);
+        result = 31 * result + (bookCoverImg != null ? bookCoverImg.hashCode() : 0);
+        result = 31 * result + (bookIntroduction != null ? bookIntroduction.hashCode() : 0);
+        result = 31 * result + (bookPrice != null ? bookPrice.hashCode() : 0);
+        result = 31 * result + (bookStock != null ? bookStock.hashCode() : 0);
+        result = 31 * result + (createBy != null ? createBy.hashCode() : 0);
+        result = 31 * result + (lastModifiedBy != null ? lastModifiedBy.hashCode() : 0);
+        return result;
     }
 }
