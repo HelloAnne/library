@@ -1,8 +1,8 @@
 package com.anne.library.controller;
 
 import com.anne.library.common.controller.BaseController;
-import com.anne.library.dao.BookDAO;
 import com.anne.library.domain.Book;
+import com.anne.library.domain.dto.BookDTO;
 import com.anne.library.enums.DeletedFlagEnum;
 import com.anne.library.redis.BookKey;
 import com.anne.library.redis.RedisService;
@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/book")
-public class BookController extends BaseController<Book,BookDAO,BookService> implements InitializingBean {
+public class BookController extends BaseController<Book,BookDTO,BookService> implements InitializingBean {
 
     @Autowired
     private BookService bookService;
@@ -58,4 +58,6 @@ public class BookController extends BaseController<Book,BookDAO,BookService> imp
     public Result borrowBook(@PathVariable("bookId") Long bookId){
         return bookService.borrowBook(bookId);
     }
+
+
 }

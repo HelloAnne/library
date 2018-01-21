@@ -2,10 +2,7 @@ package com.anne.library.domain;
 
 import com.anne.library.common.domain.EntityBean;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Author: Anne Zhang
@@ -20,7 +17,7 @@ public class User extends EntityBean<Long> {
      */
     @Id
     @Column(name = "ID")
-    @GeneratedValue(generator = "JDBC")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**

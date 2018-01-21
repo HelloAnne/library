@@ -18,4 +18,5 @@ public interface BookService extends BaseService<Book> {
     Result<Object> borrowBook(Long bookId);
 
     List<Book> selectAllBooks();
+
 }

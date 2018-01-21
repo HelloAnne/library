@@ -1,6 +1,7 @@
 package com.anne.library.service.impl;
 
 import com.anne.library.common.service.BaseServiceImpl;
+import com.anne.library.dao.BookDAO;
 import com.anne.library.domain.Book;
 import com.anne.library.domain.BorrowRecord;
 import com.anne.library.enums.DeletedFlagEnum;
@@ -30,6 +31,8 @@ public class BookServiceImpl extends BaseServiceImpl<Book> implements BookServic
     @Autowired
     private MQSender mqSender;
 
+    @Autowired
+    private BookDAO bookDAO;
     /**
      * 根据主键逻辑删除book
      * 1. 系统初始化，将book属性加载到redis；
@@ -94,4 +97,5 @@ public class BookServiceImpl extends BaseServiceImpl<Book> implements BookServic
         // TODO
         return null;
     }
+
 }

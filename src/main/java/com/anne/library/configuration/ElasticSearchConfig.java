@@ -24,7 +24,7 @@ public class ElasticSearchConfig {
                 9300
         );
         Settings settings = Settings.builder()
-                .put("cluster.name","elastic")
+                .put("cluster.name","elasticsearch")
                 .build();
 
         TransportClient client = new PreBuiltTransportClient(settings);
